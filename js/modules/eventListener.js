@@ -83,7 +83,7 @@ export default class EventListener extends Data{
         break;
     }
 
-    localStorage.setItem(`transport`, JSON.stringify(this.transport));
-    localStorage.setItem(`costs`, JSON.stringify(this.costs));
+    this.storage.setItem(`transport`, this.transport);
+    this.storage.setItem(`costs`, this.costs);
   }
 }

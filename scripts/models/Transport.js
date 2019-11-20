@@ -8,8 +8,8 @@ export default class Transport{
   }
 
   showCapacityInPounds() {
-    const kgInPound = 2.2046;
-    this.capacity = this.capacity * kgInPound;
+    const KG_IN_POUND = 2.2046;
+    this.capacity = this.capacity * KG_IN_POUND;
     console.log(`Capacity in pounds ${this.averageSpeed}nm.`);
   }
 

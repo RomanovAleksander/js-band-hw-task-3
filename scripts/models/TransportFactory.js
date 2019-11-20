@@ -1,5 +1,5 @@
-import Ship from "./ship.js";
-import Truck from "./lorry.js";
+import Ship from "./Ship.js";
+import Truck from "./Truck.js";
 
 export default class TransportFactory {
   static create(type, args) {

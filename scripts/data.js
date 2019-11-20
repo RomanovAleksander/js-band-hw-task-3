@@ -15,21 +15,33 @@ export default class Data extends StorageSingleton{
     console.log(localStorage);
     if (localStorage[this.transportKey]) {
       this.transport = this.storage.getItem(TRANSPORT_KEY);
-      this.transport.forEach(item => {
-        this.renderItem(item);
-      });
+      this.renderList(this.transport);
     }
     if (localStorage[this.costsKey]) {
       this.costs = this.storage.getItem(COSTS_KEY);
-      this.costs.forEach(item => {
-        this.renderItem(item);
-      });
+      this.renderList(this.costs);
     }
   }
 
-  renderItem(item) {
-    const transportsList = document.querySelector('.transport-list-header');
+  renderList(list) {
+    list.forEach(item => {
+      this.renderLogic(item);
+    });
+  }
+
+  renderLogic(item) {
     const costsList = document.querySelector('.costs-list-header');
+    const transportsList = document.querySelector('.transport-list-header');
+
+    if (item.costOfCargo) {
+      this.renderItem(costsList, item);
+    } else {
+      this.renderItem(transportsList, item);
+    }
+  }
+
+  renderItem(list, item) {
+    const isType = item.type ? item.type : 'Cost';
     const render = (item) => {
       let result = '';
       for (const i in item) {
@@ -39,20 +51,11 @@ export default class Data extends StorageSingleton{
       }
       return result;
     };
-
-    if (item.costOfCargo) {
-      costsList.insertAdjacentHTML('afterEnd', `
+    list.insertAdjacentHTML('afterEnd', `
       <div class="list-item">
+      <div class="item-text"><b>${isType}</b></div>
         ${render(item)}
       </div>
       `);
-    } else {
-      transportsList.insertAdjacentHTML('afterEnd', `
-      <div class="list-item">
-        <div class="item-text"><b>${item.type}</b></div>
-        ${render(item)}
-      </div>
-      `);
-    }
   }
 }

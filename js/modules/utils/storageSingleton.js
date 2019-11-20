@@ -1,9 +1,9 @@
-export default class StorageSingletone {
+export default class StorageSingleton {
   constructor() {
-    if (StorageSingletone.instance) {
-      return StorageSingletone.instance
+    if (StorageSingleton.instance) {
+      return StorageSingleton.instance
     }
-    StorageSingletone.instance = this;
+    StorageSingleton.instance = this;
     this.prefix = 'JS-Band-';
     return this;
   }

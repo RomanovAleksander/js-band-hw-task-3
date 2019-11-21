@@ -1,12 +1,12 @@
-import StorageSingleton from "./utils/storageSingleton.js";
+import LocalStorage from "./utils/localStorage.js";
 import {TRANSPORT_KEY, COSTS_KEY} from "./utils/constans.js";
 
-export default class Data extends StorageSingleton{
+export default class Data extends LocalStorage{
   constructor(prefix) {
     super(prefix);
     this.transport = [];
     this.costs = [];
-    this.storage = new StorageSingleton();
+    this.storage = new LocalStorage();
     this.transportKey = `${this.prefix}${TRANSPORT_KEY}`;
     this.costsKey = `${this.prefix}${COSTS_KEY}`;
   }
